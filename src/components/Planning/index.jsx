@@ -43,6 +43,7 @@ const Planning = () => {
             color: "#02B683",
         },
     ])
+    setPeriods(periods) // temp
     const [addPeriodModal, setAddPeriodModal] = useState(false)
 
     return (
