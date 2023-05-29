@@ -1,7 +1,9 @@
-import { Tab, Tabs } from "@mui/material"
+import { Button, Tab, Tabs, Dialog } from "@mui/material"
 import { useState } from "react"
 import TabPanel from "../TabPanel"
 import PeriodBlock from "../PeriodBlock"
+import stroke from './../../assets/SVGs/Stroke-1.svg'
+import plusInBox from './../../assets/SVGs/Combined-Shape-5.svg'
 import './index.css'
 
 const Planning = () => {
@@ -41,8 +43,16 @@ const Planning = () => {
             color: "#02B683",
         },
     ])
+    const [addPeriodModal, setAddPeriodModal] = useState(false)
+
     return (
         <div className="p-6 h-full">
+            <Dialog
+                open={addPeriodModal}
+                onClose={() => setAddPeriodModal(false)}
+            >
+                pp
+            </Dialog>
             <div className="border border-gray-300 border-t-0 border-l-0 border-r-0">
                 <Tabs textColor="primary" indicatorColor="primary" value={tab} onChange={(e, v) => setTab(v)} TabIndicatorProps={{ style: { bottom: ".5rem", height: "calc(100% - 0.5rem)", zIndex: "-1", borderRadius: "0.5rem", opacity: 0.2, backgroundColor: "#6779ff" } }}>
                     <Tab disableRipple label="Project Planning" sx={{ textTransform: "none", fontSize: "1rem", minHeight: "0", padding: "0.5rem 1rem", '&.Mui-selected': { color: "#000" } }} />
@@ -54,6 +64,20 @@ const Planning = () => {
                 Project Planning
             </TabPanel>
             <TabPanel value={tab} index={1} className="h-full">
+                <div className="flex justify-start items-center p-4">
+                    <div className="text-lg font-bold">April 10-17</div>
+                    <div className="flex mx-4 gap-2">
+                        <img src={stroke} alt="" className="" />
+                        Today
+                        <img src={stroke} alt="" className=" rotate-180" />
+                    </div>
+                    <div className="ml-auto">
+                        <Button variant="contained" color="primary" disableElevation sx={{ textTransform: "none", borderRadius: 9999 }} onClick={() => setAddPeriodModal(true)}>
+                            <img src={plusInBox} alt="" className="mr-2" />
+                            Add Period
+                        </Button>
+                    </div>
+                </div>
                 <div className="grid grid-cols-[100px_repeat(7,_1fr)] text-center">
                     <div></div>
                     <div className="flex flex-col justify-center items-center">
@@ -152,3 +176,6 @@ const Planning = () => {
 }
 
 export default Planning
+
+// TODO - Add Period Modal
+// TODO - Make calendar dynamic
