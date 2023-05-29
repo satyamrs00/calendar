@@ -1,10 +1,46 @@
 import { Tab, Tabs } from "@mui/material"
 import { useState } from "react"
 import TabPanel from "../TabPanel"
+import PeriodBlock from "../PeriodBlock"
 import './index.css'
 
 const Planning = () => {
     const [tab, setTab] = useState(1)
+    const [periods, setPeriods] = useState([
+        {
+            id: 1,
+            name: "Period 1",
+            date: "2023-04-10",
+            start: 9,
+            end: 10,
+            color: "#D16D9A",
+            activities: [ "Activity 1", "Activity 2" ]
+        },
+        {
+            id: 2,
+            name: "Period 2",
+            date: "2023-04-10",
+            start: 11,
+            end: 12,
+            color: "#938BE6",
+        },
+        {
+            id: 3,
+            name: "Period 3",
+            date: "2023-04-10",
+            start: 13,
+            end: 14,
+            color: "#E7C546",
+        },
+        {
+            id: 4,
+            name: "Period 4",
+            date: "2023-04-10",
+            start: 16,
+            end: 17,
+            color: "#02B683",
+        },
+    ])
     return (
         <div className="p-6 h-full">
             <div className="border border-gray-300 border-t-0 border-l-0 border-r-0">
@@ -58,26 +94,51 @@ const Planning = () => {
                     <div className="min-h-[3rem] border border-gray-300 border-t-0 border-l-0 border-r-0"></div>
                 </div>
                 <div className="overflow-y-scroll scrollbar-hide" style={{
-                    height: "calc(100% - 13.5rem)",
+                    // height: "calc(100% - 13.5rem",
+                    height: "100vh"
                 }}>
                     <div className="grid grid-cols-[2rem_repeat(7,_1fr)] text-center" style={{ marginLeft: 'calc(100px - 2rem)' }}>
                         {[...Array(24)].map((_, i) => (
                             <>
                                 <div className="min-h-[3rem] border border-gray-300 border-t-0 border-l-0 text-xs text-[#AAA]">
                                     <div className="transform -translate-y-1/2 -translate-x-10">
-                                        {(i < 10) ? `0${i}:00` : `${i}:00`}
-                                    </div>
-                                    <div className="transform translate-y-6 -translate-x-10">
-                                        {(i === 23) && "00:00"}
+                                        {(i > 9) ? `${i}:00` : (i > 0) && `0${i}:00`}
                                     </div>
                                 </div>
-                                <div className="min-h-[3rem] border border-gray-300 border-t-0 border-l-0"></div>
-                                <div className="min-h-[3rem] border border-gray-300 border-t-0 border-l-0"></div>
-                                <div className="min-h-[3rem] border border-gray-300 border-t-0 border-l-0"></div>
-                                <div className="min-h-[3rem] border border-gray-300 border-t-0 border-l-0"></div>
-                                <div className="min-h-[3rem] border border-gray-300 border-t-0 border-l-0"></div>
-                                <div className="min-h-[3rem] border border-gray-300 border-t-0 border-l-0"></div>
-                                <div className="min-h-[3rem] border border-gray-300 border-t-0 border-l-0 border-r-0">{i}</div>
+                                <div className="min-h-[3rem] border border-gray-300 border-t-0 border-l-0">
+                                    {periods?.filter(period => period.start === i && period.date === "2023-04-10")?.map(period => (
+                                        <PeriodBlock period={period} />
+                                    ))}
+                                </div>
+                                <div className="min-h-[3rem] border border-gray-300 border-t-0 border-l-0">
+                                    {periods?.filter(period => period.start === i && period.date === "2023-04-11")?.map(period => (
+                                        <PeriodBlock period={period} />
+                                    ))}</div>
+                                <div className="min-h-[3rem] border border-gray-300 border-t-0 border-l-0">
+                                    {periods?.filter(period => period.start === i && period.date === "2023-04-12")?.map(period => (
+                                        <PeriodBlock period={period} />
+                                    ))}
+                                </div>
+                                <div className="min-h-[3rem] border border-gray-300 border-t-0 border-l-0">
+                                {periods?.filter(period => period.start === i && period.date === "2023-04-13")?.map(period => (
+                                        <PeriodBlock period={period} />
+                                    ))}
+                                </div>
+                                <div className="min-h-[3rem] border border-gray-300 border-t-0 border-l-0">
+                                {periods?.filter(period => period.start === i && period.date === "2023-04-14")?.map(period => (
+                                        <PeriodBlock period={period} />
+                                    ))}
+                                </div>
+                                <div className="min-h-[3rem] border border-gray-300 border-t-0 border-l-0">
+                                {periods?.filter(period => period.start === i && period.date === "2023-04-15")?.map(period => (
+                                        <PeriodBlock period={period} />
+                                    ))}
+                                </div>
+                                <div className="min-h-[3rem] border border-gray-300 border-t-0 border-l-0 border-r-0">
+                                {periods?.filter(period => period.start === i && period.date === "2023-04-16")?.map(period => (
+                                        <PeriodBlock period={period} />
+                                    ))}
+                                </div>
                             </>
                         ))}
                     </div>

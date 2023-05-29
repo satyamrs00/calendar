@@ -12,7 +12,7 @@ import { useState } from "react"
 const Calendar = () => {
     const [mainTab, setMainTab] = useState(0)
     return (
-        <div className="h-screen flex flex-col overflow-hidden">
+        <div className="h-screen flex flex-col">
             <div className="flex justify-between w-full shadow-lg p-4">
                 <div></div>
                 <Tabs value={mainTab} textColor="primary" indicatorColor="primary" TabIndicatorProps={{ style: { bottom: "0.5rem" } }}>
