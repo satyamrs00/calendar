@@ -9,20 +9,21 @@ const CustomDateRangePicker = ({value, setValue}) => {
     return (
         <LocalizationProvider
           dateAdapter={AdapterDayjs}
-          localeText={{ start: 'Check-in', end: 'Check-out' }}
+          localeText={{ start: '', end: '' }}
         >
           <DateRangePicker
             value={value}
             onChange={(newValue) => {
               setValue(newValue);
             }}
-            renderInput={(startProps, endProps) =>
-                <React.Fragment>
-                    <TextField {...startProps} />
-                    <Box sx={{ mx: 2 }}> to </Box>
-                    <TextField {...endProps} />
-                </React.Fragment>        
-            }
+            renderInput={(startProps, endProps) => (
+              <React.Fragment>
+                <TextField {...startProps} />
+                <Box sx={{ mx: 2 }}> to </Box>
+                <TextField {...endProps} />
+              </React.Fragment>
+            )}
+
           />
         </LocalizationProvider>
       );

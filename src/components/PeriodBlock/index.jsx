@@ -1,6 +1,6 @@
 const PeriodBlock = ({ period }) => {
     return (
-        <div className='w-11/12 p-1 rounded text-start' style={{
+        <div className='w-full h-full p-1 rounded text-start' style={{
             color: period?.color,
             backgroundColor: `${period?.color}2A`,
         }}>

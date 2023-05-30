@@ -1,3 +1,7 @@
+### Note 
+The length of a period is always 1 hour.
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

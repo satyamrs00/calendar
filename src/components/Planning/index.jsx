@@ -57,7 +57,7 @@ const Planning = () => {
         const d0 = new Date(newP.dateRange[0])
         const d0copy = new Date(newP.dateRange[0])
         const d1 = new Date(newP.dateRange[1])
-        if (newP.repeat.length > 0){
+        if (newP?.repeat?.length > 0){
             for(let i = 1; i <= (d1 - d0) / (1000 * 60 * 60 * 24); i++){
                 d0copy.setDate(d0copy.getDate() + 1)
                 if (newP.repeat.includes(d0copy.getDay())){
@@ -159,40 +159,15 @@ const Planning = () => {
                                         {(i > 9) ? `${i}:00` : (i > 0) && `0${i}:00`}
                                     </div>
                                 </div>
-                                <div className="min-h-[3rem] border border-gray-300 border-t-0 border-l-0">
-                                    {periods?.filter(period => period.start.getHours() === i && period.date.getDate() === 10)?.map(period => (
-                                        <PeriodBlock period={period} />
-                                    ))}
-                                </div>
-                                <div className="min-h-[3rem] border border-gray-300 border-t-0 border-l-0">
-                                    {periods?.filter(period => period.start.getHours() === i && period.date.getDate() === 11)?.map(period => (
-                                        <PeriodBlock period={period} />
-                                    ))}</div>
-                                <div className="min-h-[3rem] border border-gray-300 border-t-0 border-l-0">
-                                    {periods?.filter(period => period.start.getHours() === i && period.date.getDate() === 12)?.map(period => (
-                                        <PeriodBlock period={period} />
-                                    ))}
-                                </div>
-                                <div className="min-h-[3rem] border border-gray-300 border-t-0 border-l-0">
-                                    {periods?.filter(period => period.start.getHours() === i && period.date.getDate() === 13)?.map(period => (
-                                        <PeriodBlock period={period} />
-                                    ))}
-                                </div>
-                                <div className="min-h-[3rem] border border-gray-300 border-t-0 border-l-0">
-                                    {periods?.filter(period => period.start.getHours() === i && period.date.getDate() === 14)?.map(period => (
-                                        <PeriodBlock period={period} />
-                                    ))}
-                                </div>
-                                <div className="min-h-[3rem] border border-gray-300 border-t-0 border-l-0">
-                                    {periods?.filter(period => period.start.getHours() === i && period.date.getDate() === 15)?.map(period => (
-                                        <PeriodBlock period={period} />
-                                    ))}
-                                </div>
-                                <div className="min-h-[3rem] border border-gray-300 border-t-0 border-l-0 border-r-0">
-                                {periods?.filter(period => period.start.getHours() === i && period.date.getDate() === 16)?.map(period => (
-                                        <PeriodBlock period={period} />
-                                    ))}
-                                </div>
+                                {[...Array(7)].map((_, j) => (
+                                    <div className="min-h-[3rem] border border-gray-300 border-t-0 border-l-0">
+                                        <div className="h-full flex justify-center items-stretch">
+                                            {periods?.filter(period => period.start.getHours() === i && period.date.getDate() === 10 + j)?.map(period => (
+                                                <PeriodBlock period={period} />
+                                            ))}
+                                        </div>
+                                    </div>
+                                ))}
                             </>
                         ))}
                     </div>
