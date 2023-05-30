@@ -44,13 +44,13 @@ const NewPeriodModal = ({ onClose, onSubmit }) => {
                 className="mb-3"
                 size="small"
             >
-                <ToggleButton func='repeat' value={'sunday'}>S</ToggleButton>
-                <ToggleButton func='repeat' value={'monday'}>M</ToggleButton>
-                <ToggleButton func='repeat' value={'tuesday'}>T</ToggleButton>
-                <ToggleButton func='repeat' value={'wednesday'}>W</ToggleButton>
-                <ToggleButton func='repeat' value={'thursday'}>T</ToggleButton>
-                <ToggleButton func='repeat' value={'friday'}>F</ToggleButton>
-                <ToggleButton func='repeat' value={'saturday'}>S</ToggleButton>
+                <ToggleButton func='repeat' value={0}>S</ToggleButton>
+                <ToggleButton func='repeat' value={1}>M</ToggleButton>
+                <ToggleButton func='repeat' value={2}>T</ToggleButton>
+                <ToggleButton func='repeat' value={3}>W</ToggleButton>
+                <ToggleButton func='repeat' value={4}>T</ToggleButton>
+                <ToggleButton func='repeat' value={5}>F</ToggleButton>
+                <ToggleButton func='repeat' value={6}>S</ToggleButton>
             </ToggleButtonGroup>
         </div>
         <div className="mb-12">

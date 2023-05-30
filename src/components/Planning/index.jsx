@@ -46,13 +46,42 @@ const Planning = () => {
     ])
     const [addPeriodModal, setAddPeriodModal] = useState(false)
 
+    const handleSubmit = (newP) => {
+        const newPs = [{
+            name: newP.name,
+            date: new Date (newP.dateRange[0]),
+            start: newP.start,
+            end: newP.end,
+            color: newP.color
+        }]
+        const d0 = new Date(newP.dateRange[0])
+        const d0copy = new Date(newP.dateRange[0])
+        const d1 = new Date(newP.dateRange[1])
+        if (newP.repeat.length > 0){
+            for(let i = 1; i <= (d1 - d0) / (1000 * 60 * 60 * 24); i++){
+                d0copy.setDate(d0copy.getDate() + 1)
+                if (newP.repeat.includes(d0copy.getDay())){
+                    newPs.push({
+                        name: newP.name,
+                        date: new Date (d0copy),
+                        start: newP.start,
+                        end: newP.end,
+                        color: newP.color
+                    })    
+                }
+            }    
+        }
+        setPeriods([...periods, ...newPs])
+        setAddPeriodModal(false); 
+    }
+
     return (
         <div className="p-6 h-full">
             <Dialog
                 open={addPeriodModal}
                 onClose={() => setAddPeriodModal(false)}
             >
-                <NewPeriodModal onClose={() => setAddPeriodModal(false)} onSubmit={(newP) => { setPeriods([...periods, newP]); setAddPeriodModal(false); console.log(newP) }} />
+                <NewPeriodModal onClose={() => setAddPeriodModal(false)} onSubmit={handleSubmit} />
             </Dialog>
             <div className="border border-gray-300 border-t-0 border-l-0 border-r-0">
                 <Tabs textColor="primary" indicatorColor="primary" value={tab} onChange={(e, v) => setTab(v)} TabIndicatorProps={{ style: { bottom: ".5rem", height: "calc(100% - 0.5rem)", zIndex: "-1", borderRadius: "0.5rem", opacity: 0.2, backgroundColor: "#6779ff" } }}>
