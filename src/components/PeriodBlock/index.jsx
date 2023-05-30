@@ -6,7 +6,7 @@ const PeriodBlock = ({ period }) => {
         }}>
             <div>{period?.name}</div>
             <div className="text-xs">
-                {`${period?.start}:00 - ${period?.end}:00`}
+                {`${period?.start.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false })} - ${period?.end.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false })}`}
             </div>
             
             {

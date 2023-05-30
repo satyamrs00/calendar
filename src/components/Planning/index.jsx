@@ -1,10 +1,11 @@
-import { Button, Tab, Tabs, Dialog } from "@mui/material"
+import { Button, Tab, Tabs, Dialog, TextField, ToggleButtonGroup, ToggleButton } from "@mui/material"
 import { useState } from "react"
 import TabPanel from "../TabPanel"
 import PeriodBlock from "../PeriodBlock"
 import stroke from './../../assets/SVGs/Stroke-1.svg'
 import plusInBox from './../../assets/SVGs/Combined-Shape-5.svg'
 import './index.css'
+import NewPeriodModal from "../NewPeriodModal"
 
 const Planning = () => {
     const [tab, setTab] = useState(1)
@@ -12,34 +13,34 @@ const Planning = () => {
         {
             id: 1,
             name: "Period 1",
-            date: "2023-04-10",
-            start: 9,
-            end: 10,
+            date: new Date("2023-04-10"),
+            start: new Date("2023-04-10 09:00"),
+            end: new Date("2023-04-10 10:00"),
             color: "#D16D9A",
             activities: [ "Activity 1", "Activity 2" ]
         },
         {
             id: 2,
             name: "Period 2",
-            date: "2023-04-10",
-            start: 11,
-            end: 12,
+            date: new Date("2023-04-10"),
+            start: new Date("2023-04-10 11:00"),
+            end: new Date("2023-04-10 12:00"),
             color: "#938BE6",
         },
         {
             id: 3,
             name: "Period 3",
-            date: "2023-04-10",
-            start: 13,
-            end: 14,
+            date: new Date("2023-04-10"),
+            start: new Date("2023-04-10 13:00"),
+            end: new Date("2023-04-10 14:00"),
             color: "#E7C546",
         },
         {
             id: 4,
             name: "Period 4",
-            date: "2023-04-10",
-            start: 16,
-            end: 17,
+            date: new Date("2023-04-10"),
+            start: new Date("2023-04-10 15:00"),
+            end: new Date("2023-04-10 16:00"),
             color: "#02B683",
         },
     ])
@@ -51,7 +52,7 @@ const Planning = () => {
                 open={addPeriodModal}
                 onClose={() => setAddPeriodModal(false)}
             >
-                pp
+                <NewPeriodModal onClose={() => setAddPeriodModal(false)} onSubmit={(newP) => { setPeriods([...periods, newP]); setAddPeriodModal(false); console.log(newP) }} />
             </Dialog>
             <div className="border border-gray-300 border-t-0 border-l-0 border-r-0">
                 <Tabs textColor="primary" indicatorColor="primary" value={tab} onChange={(e, v) => setTab(v)} TabIndicatorProps={{ style: { bottom: ".5rem", height: "calc(100% - 0.5rem)", zIndex: "-1", borderRadius: "0.5rem", opacity: 0.2, backgroundColor: "#6779ff" } }}>
@@ -130,36 +131,36 @@ const Planning = () => {
                                     </div>
                                 </div>
                                 <div className="min-h-[3rem] border border-gray-300 border-t-0 border-l-0">
-                                    {periods?.filter(period => period.start === i && period.date === "2023-04-10")?.map(period => (
+                                    {periods?.filter(period => period.start.getHours() === i && period.date.getDate() === 10)?.map(period => (
                                         <PeriodBlock period={period} />
                                     ))}
                                 </div>
                                 <div className="min-h-[3rem] border border-gray-300 border-t-0 border-l-0">
-                                    {periods?.filter(period => period.start === i && period.date === "2023-04-11")?.map(period => (
+                                    {periods?.filter(period => period.start.getHours() === i && period.date.getDate() === 11)?.map(period => (
                                         <PeriodBlock period={period} />
                                     ))}</div>
                                 <div className="min-h-[3rem] border border-gray-300 border-t-0 border-l-0">
-                                    {periods?.filter(period => period.start === i && period.date === "2023-04-12")?.map(period => (
+                                    {periods?.filter(period => period.start.getHours() === i && period.date.getDate() === 12)?.map(period => (
                                         <PeriodBlock period={period} />
                                     ))}
                                 </div>
                                 <div className="min-h-[3rem] border border-gray-300 border-t-0 border-l-0">
-                                {periods?.filter(period => period.start === i && period.date === "2023-04-13")?.map(period => (
+                                    {periods?.filter(period => period.start.getHours() === i && period.date.getDate() === 13)?.map(period => (
                                         <PeriodBlock period={period} />
                                     ))}
                                 </div>
                                 <div className="min-h-[3rem] border border-gray-300 border-t-0 border-l-0">
-                                {periods?.filter(period => period.start === i && period.date === "2023-04-14")?.map(period => (
+                                    {periods?.filter(period => period.start.getHours() === i && period.date.getDate() === 14)?.map(period => (
                                         <PeriodBlock period={period} />
                                     ))}
                                 </div>
                                 <div className="min-h-[3rem] border border-gray-300 border-t-0 border-l-0">
-                                {periods?.filter(period => period.start === i && period.date === "2023-04-15")?.map(period => (
+                                    {periods?.filter(period => period.start.getHours() === i && period.date.getDate() === 15)?.map(period => (
                                         <PeriodBlock period={period} />
                                     ))}
                                 </div>
                                 <div className="min-h-[3rem] border border-gray-300 border-t-0 border-l-0 border-r-0">
-                                {periods?.filter(period => period.start === i && period.date === "2023-04-16")?.map(period => (
+                                {periods?.filter(period => period.start.getHours() === i && period.date.getDate() === 16)?.map(period => (
                                         <PeriodBlock period={period} />
                                     ))}
                                 </div>
@@ -177,5 +178,4 @@ const Planning = () => {
 
 export default Planning
 
-// TODO - Add Period Modal
 // TODO - Make calendar dynamic
