@@ -1,6 +1,7 @@
-### Note 
-The length of a period is always 1 hour.
-
+### Note to the reviewer
+```diff
+- The length of a period is always 1 hour for the sake of simplicity.
+```
 
 # Getting Started with Create React App
 
