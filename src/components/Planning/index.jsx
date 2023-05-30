@@ -96,8 +96,8 @@ const Planning = () => {
             </TabPanel>
             <TabPanel value={tab} index={1} className="h-full">
                 <div className="flex justify-start items-center p-4">
-                    <div className="text-lg font-bold">
-                        {`${currentStart?.toLocaleDateString([], {year: 'numeric', month: 'long', day: 'numeric' })} - ${new Date(currentStart?.getTime() + 6 * 24 * 60 * 60 * 1000)?.toLocaleDateString([], {year: 'numeric', month: 'long', day: 'numeric' })}`}
+                    <div className="text-lg font-bold w-72">
+                        {`${currentStart?.toLocaleDateString([], {year: 'numeric', month: 'short', day: 'numeric' })} - ${new Date(currentStart?.getTime() + 6 * 24 * 60 * 60 * 1000)?.toLocaleDateString([], {year: 'numeric', month: 'short', day: 'numeric' })}`}
                     </div>
                     <div className="flex mx-4 gap-2">
                         <img src={stroke} alt="" className="cursor-pointer" onClick={() => setCurrentStart(new Date(currentStart?.getTime() - 7 * 24 * 60 * 60 * 1000))} />
@@ -117,38 +117,14 @@ const Planning = () => {
                     <div></div>
                     {[...Array(7)].map((_, i) => (
                         <div className="flex flex-col justify-center items-center">
-                            <div className={"text-xs" + (currentStart?.getDate() + i === new Date().getDate() ? ' text-[#5364FF]' : '')}>
+                            <div className={"text-xs" + (Math.abs((new Date(currentStart.getTime() + i * 24 * 60 * 60 * 1000)).getTime() - (new Date()).getTime()) < 12*60*60*1000 ? ' text-[#5364FF]' : '')}>
                                 {new Date(currentStart?.getTime() + i * 24 * 60 * 60 * 1000)?.toLocaleDateString([], {weekday: 'short'}).toUpperCase()}
                             </div>
-                            <span className={"text-2xl rounded-full px-2 aspect-square flex justify-center items-center" + (currentStart?.getDate() + i === new Date().getDate() ? ' bg-[#5364FF] text-white' : '')}>
+                            <span className={"text-2xl rounded-full px-2 aspect-square flex justify-center items-center" + (Math.abs((new Date(currentStart.getTime() + i * 24 * 60 * 60 * 1000)).getTime() - (new Date()).getTime()) < 12*60*60*1000 ? ' bg-[#5364FF] text-white' : '')}>
                                 {new Date(currentStart?.getTime() + i * 24 * 60 * 60 * 1000)?.toLocaleDateString([], {day: '2-digit'})}
                             </span>
                         </div>
                     ))}
-                    {/* <div className="flex flex-col justify-center items-center">
-                        <div className="text-xs">TUE</div>
-                        <span className="text-2xl px-2 aspect-square flex justify-center items-center">11</span>
-                    </div>
-                    <div className="flex flex-col justify-center items-center">
-                        <div className="text-xs">WED</div>
-                        <span className="text-2xl px-2 aspect-square flex justify-center items-center">12</span>
-                    </div>
-                    <div className="flex flex-col justify-center items-center">
-                        <div className="text-xs">THU</div>
-                        <span className="text-2xl px-2 aspect-square flex justify-center items-center">13</span>
-                    </div>
-                    <div className="flex flex-col justify-center items-center">
-                        <div className="text-xs">FRI</div>
-                        <span className="text-2xl px-2 aspect-square flex justify-center items-center">14</span>
-                    </div>
-                    <div className="flex flex-col justify-center items-center">
-                        <div className="text-xs">SAT</div>
-                        <span className="text-2xl px-2 aspect-square flex justify-center items-center">15</span>
-                    </div>
-                    <div className="flex flex-col justify-center items-center">
-                        <div className="text-xs">SUN</div>
-                        <span className="text-2xl px-2 aspect-square flex justify-center items-center">16</span>
-                    </div> */}
                     {[...Array(8)].map((_, i) => (
                         <div className={'min-h-[3rem] border border-gray-300 border-t-0 border-l-0' + (i === 7 ? ' border-r-0': '')}></div>
                     ))}
@@ -168,7 +144,7 @@ const Planning = () => {
                                 {[...Array(7)].map((_, j) => (
                                     <div className={"min-h-[3rem] border border-gray-300 border-t-0 border-l-0" + (j === 6 && ' border-r-0')}>
                                         <div className="h-full flex justify-center items-stretch">
-                                            {periods?.filter(period => period.start.getHours() === i && period.date.getDate() === new Date(currentStart?.getTime() + j * 24 * 60 * 60 * 1000)?.getDate()).map(period => (
+                                            {periods?.filter(period => period.start.getHours() === i && Math.abs(period.date.getTime() - (currentStart?.getTime() + j * 24 * 60 * 60 * 1000)) < 12*60*60*1000).map(period => (
                                                 <PeriodBlock period={period} />
                                             ))}
                                         </div>
